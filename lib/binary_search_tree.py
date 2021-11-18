@@ -98,7 +98,6 @@ class BinarySearchTree:
         da árvore em ordem
     """
     def in_order_traversal(self, fnCallback, root = False):
-<<<<<<< HEAD
 
         if root is False: root = self.__root
 
@@ -173,29 +172,29 @@ class BinarySearchTree:
         node = self.__search_node(self.__root, val)
         if node is None: return False
         else: return True
-    
+
     """
-        Método PRIVADO para encontrar o nodo de menor valor a partir da 
-        raiz fornecida
+        Método PRIVADO para encontrar o nodo de menor valor a partir
+        da raiz fornecida
     """
     def __min_node(self, root):
         node = root
         while node is not None and node.left is not None:
             node = node.left
         return node
-    
+
     """
-        Método PRIVADO para encontrar o nodo de maior valor a partir 
-        da raíz fornecida 
+        Método PRIVADO para encontrar o nodo de maior valor a partir
+        da raiz fornecida
     """
     def __max_node(self, root):
         node = root
-        while node is not None and node.left is not None:
+        while node is not None and node.right is not None:
             node = node.right
         return node
 
     """
-        Método público para remoção de um valor da árvore 
+        Método público para remoção de um valor da árvore
     """
     def remove(self, val):
         self.__root = self.__remove_node(self.__root, val)
@@ -204,25 +203,25 @@ class BinarySearchTree:
         Método PRIVADO para remoção de um nodo da árvore
     """
     def __remove_node(self, root, val):
-        
-        # 1º caso: árvore vazia 
+
+        # 1º caso: árvore vazia
         if root is None: return None
 
-        # 2º caso: o valor a ser removido é MENOR que o valor da raiz 
+        # 2º caso: o valor a ser removido é MENOR que o valor da raiz
         # Continua procurando pelo nodo a ser removido pelo lado ESQUERDO
         if val < root.data: 
             root.left = self.__remove_node(root.left, val)
             return root
 
-        # 3º caso: o valor a ser removido é MAIOR que o valor da raiz 
-        # Continua procurando pelo nodo a ser removido pelo lado DIREITO 
-        if val < root.data: 
-            root.left = self.__remove_node(root.right, val)
+        # 3º caso: o valor a ser removido é MAIOR que o valor da raiz
+        # Continua procurando pelo nodo a ser removido pelo lado DIREITO
+        if val > root.data:
+            root.right = self.__remove_node(root.right, val)
             return root
 
-        # 4º caso: o valor a ser removido é IGUAL ao valor da raiz 
-        # O nodo a ser removido foi encontrado; agora é necessário 
-        # determinar o grau do nodo para aplicar o algoritmo de remoção 
+        # 4º caso: o valor a ser removido é IGUAL ao valor da raiz
+        # O nodo a ser removido foi encontrado; agora é necessário
+        # determinar o grau do nodo para aplicar o algoritmo de remoção
         # correto para cada grau
 
         # 4.1: remoção de nodo de grau 0
@@ -230,42 +229,18 @@ class BinarySearchTree:
             root = None
             return root
 
-        # 4.2: remoção de nodo de grau 1 com subárvore à esquerda 
+        # 4.2: remoção de nodo de grau 1 com subárvore à esquerda
         if root.left is not None and root.right is None:
             root = root.left
             return root
 
-        # 4.2: remoção de nodo de grau 1 com subárvore à direita
-        if root.left is not None and root.right is not None:
+        # 4.3: remoção do nodo de grau 1 com subárvore à direita
+        if root.left is None and root.right is not None:
             root = root.right
             return root
-=======
 
-        if root is False: root = self.__root
+        # 4.4: remoção do nodo de grau 2
 
-        if root is not None:
-            self.in_order_traversal(fnCallback, root.left) # 1º
-            fnCallback(root.data)   # 2º
-            self.in_order_traversal(fnCallback, root.right) # 3º
-
-    """
-        Método que faz o percurso pré-ordem (pre-order traversal)
-        1º: visita a raiz
-        2º: visita pré-ordem a subárvore esquerda
-        3º: visita pré-ordem a subárvore direita
-        Este percurso é utilizado quando se deseja copiar a árvore,
-        preservando sua estrutura
-    """
-    def pre_order_traversal(self, fnCallback, root = False):
-
-        if root is False: root = self.__root
-
-        if root is not None:
-            fnCallback(root.data)   # 1º
-            self.pre_order_traversal(fnCallback, root.left) # 2º
-            self.pre_order_traversal(fnCallback, root.right) # 3º
-
->>>>>>> 5606af928f70e8636b1fe32ab5c8a15ca128576d
 
 ######################################################################
 
@@ -307,7 +282,6 @@ print('Sumário em-ordem:', em_ordem)
 
 pre_ordem = []
 sumario.pre_order_traversal(lambda val: pre_ordem.append(val))
-<<<<<<< HEAD
 print('Sumário pré-ordem:', pre_ordem)
 
 pre_ordem = []
@@ -322,6 +296,3 @@ existe36 = arvore.exists(36)
 existe51 = arvore.exists(51)
 existe64 = arvore.exists(64)
 print(f'36: {existe36}, 51: {existe51}, 64: {existe64}')
-=======
-print('Sumário pré-ordem:', pre_ordem)
->>>>>>> 5606af928f70e8636b1fe32ab5c8a15ca128576d
