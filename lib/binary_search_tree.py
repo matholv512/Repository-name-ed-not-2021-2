@@ -98,6 +98,7 @@ class BinarySearchTree:
         da árvore em ordem
     """
     def in_order_traversal(self, fnCallback, root = False):
+<<<<<<< HEAD
 
         if root is False: root = self.__root
 
@@ -238,6 +239,33 @@ class BinarySearchTree:
         if root.left is not None and root.right is not None:
             root = root.right
             return root
+=======
+
+        if root is False: root = self.__root
+
+        if root is not None:
+            self.in_order_traversal(fnCallback, root.left) # 1º
+            fnCallback(root.data)   # 2º
+            self.in_order_traversal(fnCallback, root.right) # 3º
+
+    """
+        Método que faz o percurso pré-ordem (pre-order traversal)
+        1º: visita a raiz
+        2º: visita pré-ordem a subárvore esquerda
+        3º: visita pré-ordem a subárvore direita
+        Este percurso é utilizado quando se deseja copiar a árvore,
+        preservando sua estrutura
+    """
+    def pre_order_traversal(self, fnCallback, root = False):
+
+        if root is False: root = self.__root
+
+        if root is not None:
+            fnCallback(root.data)   # 1º
+            self.pre_order_traversal(fnCallback, root.left) # 2º
+            self.pre_order_traversal(fnCallback, root.right) # 3º
+
+>>>>>>> 5606af928f70e8636b1fe32ab5c8a15ca128576d
 
 ######################################################################
 
@@ -279,6 +307,7 @@ print('Sumário em-ordem:', em_ordem)
 
 pre_ordem = []
 sumario.pre_order_traversal(lambda val: pre_ordem.append(val))
+<<<<<<< HEAD
 print('Sumário pré-ordem:', pre_ordem)
 
 pre_ordem = []
@@ -293,3 +322,6 @@ existe36 = arvore.exists(36)
 existe51 = arvore.exists(51)
 existe64 = arvore.exists(64)
 print(f'36: {existe36}, 51: {existe51}, 64: {existe64}')
+=======
+print('Sumário pré-ordem:', pre_ordem)
+>>>>>>> 5606af928f70e8636b1fe32ab5c8a15ca128576d
